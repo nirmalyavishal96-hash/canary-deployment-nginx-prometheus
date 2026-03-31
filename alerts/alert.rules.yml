@@ -1,0 +1,12 @@
+groups:
+  - name: canary-alerts
+    rules:
+
+      - alert: HighErrorRateCanary
+        expr: rate(http_request_duration_seconds_count{job="fastapi-v2", handler="/error"}[1m]) > 0.5
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "High error rate detected in CANARY (v2)"
+          description: "Canary version is failing. Consider rollback."

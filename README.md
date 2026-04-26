@@ -1,24 +1,38 @@
-#  Canary Deployment with Manual Rollback (DevOps Project)
+# Production-Ready Canary Deployment with Observability & Rollback Strategy
+Traffic-based canary deployment with real-time monitoring, alerting, and controlled rollback mechanism
+---
+##  Problem Statement
+Modern application deployments require safe release strategies to minimize risk, but traditional deployments often:
 
-## 📌 Overview
+- Expose all users to unstable versions  
+- Lack gradual rollout mechanisms  
+- Delay detection of failures  
+- Provide no controlled rollback process  
 
-This project demonstrates a **production-grade Canary Deployment system** with:
+This increases the risk of production outages and poor user experience.
+---
+## 💡 Solution
+This project implements a **Canary Deployment strategy** with observability and rollback control:
 
-* Traffic splitting using NGINX
-* Observability using Prometheus
-* Alerting using Alertmanager (Email notifications)
-* Human-in-the-loop rollback system
-
-👉 Designed to simulate **real-world DevOps and SRE workflows**
+- Gradually routes traffic between stable (v1) and canary (v2) versions  
+- Uses NGINX for traffic splitting (90/10)  
+- Monitors application behavior using Prometheus  
+- Triggers alerts when canary version fails  
+- Enables manual rollback based on real-time system feedback  
+---
+## 📈 Impact
+- Reduced deployment risk by exposing new version to limited users  
+- Enabled early failure detection using real-time monitoring  
+- Prevented full system outage through controlled rollback  
+- Improved deployment confidence using traffic-based release strategy  
 
 ---
-
 ## 🏗️ Architecture
 
 ```
 User → NGINX (Load Balancer)
         ↓
-   ┌───────────────┬───────────────┐
+   ┌───────────────┬
    │               │
 Stable (v1)     Canary (v2)
 90% traffic     10% traffic
@@ -124,6 +138,16 @@ Alertmanager sends:
 ```
 
 👉 Switches traffic to **100% stable (v1)**
+
+---
+
+## 🔁 Reliability & Failure Handling
+
+- Canary version (v2) is exposed to limited traffic (10%)  
+- Failures are detected using Prometheus metrics and alert rules  
+- Alerts are triggered only for canary (v2), avoiding noise from stable version  
+- Engineers validate system health before promoting or rolling back  
+- Manual rollback ensures safe recovery without affecting all users  
 
 ---
 
@@ -251,3 +275,5 @@ This project simulates:
 
 For testing purposes, traffic was temporarily increased to **50/50**
 to quickly trigger alerts and validate monitoring behavior.
+
+

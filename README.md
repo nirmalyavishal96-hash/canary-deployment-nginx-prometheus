@@ -276,4 +276,11 @@ This project simulates:
 For testing purposes, traffic was temporarily increased to **50/50**
 to quickly trigger alerts and validate monitoring behavior.
 
+---
+## 👨‍💻 Author
+
+**Nirmalya Das**
+
+DevOps Engineer | Cloud | Automation
+
 

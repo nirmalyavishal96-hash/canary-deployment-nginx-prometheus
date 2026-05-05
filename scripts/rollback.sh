@@ -26,4 +26,4 @@ docker run -d -p 8090:80 \
   -v $(pwd)/nginx/nginx.conf:/etc/nginx/nginx.conf \
   --name nginx-canary nginx
 
-echo "✅ Rollback complete"
+echo "Rollback complete"
